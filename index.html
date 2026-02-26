@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rahul Suyal — GRC & AI Governance Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:    #0A1628;
+    --navy2:   #0F1E35;
+    --navy3:   #162848;
+    --navy4:   #1E3A5F;
+    --orange:  #E8650A;
+    --orange2: #FF7A20;
+    --gold:    #FDB97D;
+    --white:   #F8FAFC;
+    --muted:   #94A3B8;
+    --slate:   #64748B;
+    --border:  rgba(255,255,255,0.08);
+    --glow:    rgba(232,101,10,0.15);
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BACKGROUND ─────────────────────────────────── */
+  body::before {
+    content:'';
+    position:fixed; inset:0; z-index:0;
+    background-image:
+      linear-gradient(rgba(232,101,10,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,101,10,0.03) 1px, transparent 1px);
+    background-size: 52px 52px;
+    pointer-events:none;
+  }
+  body::after {
+    content:'';
+    position:fixed; top:-30%; left:-20%; width:60%; height:60%; z-index:0;
+    background: radial-gradient(ellipse, rgba(232,101,10,0.06) 0%, transparent 65%);
+    pointer-events:none;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 48px;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family:'Syne',sans-serif; font-weight:800; font-size:20px;
+    color: var(--white); letter-spacing:-0.02em;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a {
+    text-decoration:none; color:var(--muted); font-size:13px;
+    font-weight:500; letter-spacing:0.03em; text-transform:uppercase;
+    transition:color 0.2s; position:relative;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px;
+    background:var(--orange); transition:width 0.25s;
+  }
+  .nav-links a:hover { color:var(--white); }
+  .nav-links a:hover::after { width:100%; }
+  .nav-cta {
+    padding:8px 20px; border:1.5px solid var(--orange);
+    border-radius:6px; background:transparent; color:var(--orange);
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:13px;
+    font-weight:600; cursor:pointer; text-decoration:none;
+    transition:all 0.2s;
+  }
+  .nav-cta:hover { background:var(--orange); color:white; }
+
+  /* ── SECTIONS ─────────────────────────────────────────── */
+  section { position:relative; z-index:1; }
+  .container { max-width:1100px; margin:0 auto; padding:0 40px; }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:80px;
+  }
+  .hero-inner {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:60px; align-items:center; width:100%;
+  }
+  .hero-eyebrow {
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; font-weight:600; color:var(--orange);
+    letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .hero-eyebrow::before {
+    content:''; width:28px; height:1.5px; background:var(--orange);
+  }
+  .hero-name {
+    font-family:'Syne',sans-serif; font-weight:800;
+    font-size:clamp(42px,5vw,68px); line-height:1.0;
+    letter-spacing:-0.03em; color:var(--white);
+    margin-bottom:16px;
+  }
+  .hero-name .highlight { color:var(--orange); display:block; }
+  .hero-title {
+    font-size:16px; font-weight:500; color:var(--muted);
+    line-height:1.6; margin-bottom:28px;
+    border-left: 2px solid var(--orange);
+    padding-left: 14px;
+  }
+  .hero-title b { color:var(--gold); font-weight:600; }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+  .btn-primary {
+    padding:12px 28px; background:var(--orange); border:none;
+    border-radius:7px; color:white; font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:14px; font-weight:700; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: all 0.2s; box-shadow: 0 4px 20px rgba(232,101,10,0.35);
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(232,101,10,0.45); }
+  .btn-outline {
+    padding:12px 28px; background:transparent;
+    border:1.5px solid rgba(255,255,255,0.2); border-radius:7px;
+    color:var(--white); font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:14px; font-weight:600; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color:var(--orange); color:var(--orange); }
+  .hero-social { display:flex; gap:16px; }
+  .social-link {
+    width:38px; height:38px; border-radius:8px;
+    border:1px solid var(--border); background:rgba(255,255,255,0.04);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-size:15px; text-decoration:none;
+    transition:all 0.2s;
+  }
+  .social-link:hover { border-color:var(--orange); color:var(--orange); background:var(--glow); }
+
+  /* Hero right — visual card */
+  .hero-card {
+    background: linear-gradient(135deg, var(--navy3), var(--navy4));
+    border: 1px solid var(--border);
+    border-radius:20px; padding:32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(232,101,10,0.1);
+    position:relative; overflow:hidden;
+  }
+  .hero-card::before {
+    content:''; position:absolute; top:-40%; right:-20%;
+    width:200px; height:200px; border-radius:50%;
+    background:radial-gradient(circle, rgba(232,101,10,0.12), transparent 70%);
+  }
+  .card-avatar {
+    width:70px; height:70px; border-radius:14px;
+    background: linear-gradient(135deg, var(--orange), #FF9B4A);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-size:26px; font-weight:800;
+    color:white; margin-bottom:18px;
+    box-shadow: 0 8px 24px rgba(232,101,10,0.35);
+  }
+  .card-name { font-family:'Syne',sans-serif; font-weight:700; font-size:18px; margin-bottom:4px; }
+  .card-role { font-size:12px; color:var(--gold); font-weight:600; margin-bottom:20px;
+    text-transform:uppercase; letter-spacing:0.05em; }
+  .card-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+  .cstat {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:10px; padding:12px 14px; text-align:center;
+  }
+  .cstat-val { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:var(--orange); }
+  .cstat-lbl { font-size:10px; color:var(--muted); font-weight:500; margin-top:2px; text-transform:uppercase; letter-spacing:0.04em; }
+  .card-badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge {
+    font-size:10px; font-weight:700; padding:3px 9px; border-radius:4px;
+    letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .badge-orange { background:rgba(232,101,10,0.15); color:var(--gold); border:1px solid rgba(232,101,10,0.3); }
+  .badge-blue   { background:rgba(59,130,246,0.12); color:#93C5FD; border:1px solid rgba(59,130,246,0.25); }
+  .badge-green  { background:rgba(34,197,94,0.1); color:#86EFAC; border:1px solid rgba(34,197,94,0.2); }
+
+  /* ── STATS STRIP ─────────────────────────────────────── */
+  #stats {
+    background: linear-gradient(90deg, var(--navy2), var(--navy3), var(--navy2));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0;
+  }
+  .stats-grid { display:flex; justify-content:center; gap:0; }
+  .stat-item {
+    flex:1; text-align:center; padding:0 32px;
+    border-right:1px solid var(--border);
+  }
+  .stat-item:last-child { border-right:none; }
+  .stat-num {
+    font-family:'Syne',sans-serif; font-size:38px; font-weight:800;
+    color:var(--orange); line-height:1; margin-bottom:6px;
+  }
+  .stat-lbl { font-size:12px; color:var(--muted); font-weight:500; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ── SECTION HEADER ──────────────────────────────────── */
+  .sec-header { text-align:center; margin-bottom:56px; }
+  .sec-tag {
+    display:inline-block; font-size:11px; font-weight:700; color:var(--orange);
+    letter-spacing:0.12em; text-transform:uppercase;
+    margin-bottom:12px; padding:4px 14px;
+    border:1px solid rgba(232,101,10,0.3); border-radius:20px;
+    background:rgba(232,101,10,0.08);
+  }
+  .sec-title {
+    font-family:'Syne',sans-serif; font-size:clamp(28px,3.5vw,40px);
+    font-weight:800; letter-spacing:-0.02em; color:var(--white);
+    line-height:1.15;
+  }
+  .sec-title span { color:var(--orange); }
+  .sec-sub { font-size:15px; color:var(--muted); max-width:520px; margin:12px auto 0; }
+
+  /* ── ABOUT ───────────────────────────────────────────── */
+  #about { padding:100px 0; }
+  .about-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:start; }
+  .about-label {
+    font-size:11px; font-weight:700; color:var(--orange);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;
+  }
+  .about-head {
+    font-family:'Syne',sans-serif; font-size:32px; font-weight:800;
+    letter-spacing:-0.02em; line-height:1.2; margin-bottom:24px;
+  }
+  .about-head em { color:var(--orange); font-style:normal; }
+  .about-body { color:var(--muted); line-height:1.85; font-size:14.5px; margin-bottom:20px; }
+  .about-pillars { display:flex; flex-direction:column; gap:14px; margin-top:28px; }
+  .pillar {
+    display:flex; align-items:flex-start; gap:14px;
+    background:rgba(255,255,255,0.025); border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px;
+    transition:border-color 0.2s;
+  }
+  .pillar:hover { border-color:rgba(232,101,10,0.4); }
+  .pillar-icon {
+    width:36px; height:36px; border-radius:8px; flex-shrink:0;
+    background:rgba(232,101,10,0.12); border:1px solid rgba(232,101,10,0.2);
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .pillar-title { font-size:13px; font-weight:700; color:var(--white); margin-bottom:3px; }
+  .pillar-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+
+  /* ── EXPERIENCE ──────────────────────────────────────── */
+  #experience { padding:100px 0; background:rgba(255,255,255,0.015); }
+  .timeline { display:flex; flex-direction:column; gap:0; position:relative; }
+  .timeline::before {
+    content:''; position:absolute; left:19px; top:0; bottom:0;
+    width:1.5px; background: linear-gradient(to bottom, var(--orange), rgba(232,101,10,0.1));
+  }
+  .tl-item { display:flex; gap:40px; padding-bottom:48px; position:relative; }
+  .tl-item:last-child { padding-bottom:0; }
+  .tl-dot-col { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+  .tl-dot {
+    width:40px; height:40px; border-radius:10px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--navy3), var(--navy4));
+    border:2px solid var(--orange);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; z-index:1;
+    box-shadow:0 0 20px rgba(232,101,10,0.2);
+  }
+  .tl-body { flex:1; padding-top:6px; }
+  .tl-period {
+    font-size:11px; font-weight:700; color:var(--orange);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;
+  }
+  .tl-role {
+    font-family:'Syne',sans-serif; font-size:20px; font-weight:700;
+    color:var(--white); margin-bottom:4px;
+  }
+  .tl-company {
+    font-size:13px; color:var(--gold); font-weight:600; margin-bottom:14px;
+  }
+  .tl-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:16px; }
+  .tl-bullets { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .tl-bullets li {
+    font-size:13.5px; color:rgba(248,250,252,0.75);
+    padding-left:18px; position:relative; line-height:1.6;
+  }
+  .tl-bullets li::before {
+    content:''; position:absolute; left:0; top:9px;
+    width:6px; height:6px; border-radius:50%;
+    background:var(--orange);
+  }
+  .tl-bullets li b { color:var(--gold); font-weight:600; }
+  .tl-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tl-tag {
+    font-size:11px; font-weight:600; padding:3px 10px; border-radius:4px;
+    background:rgba(232,101,10,0.1); color:var(--gold);
+    border:1px solid rgba(232,101,10,0.2);
+  }
+
+  /* ── FRAMEWORKS & SKILLS ─────────────────────────────── */
+  #skills { padding:100px 0; }
+  .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .skill-card {
+    background:rgba(255,255,255,0.025); border:1px solid var(--border);
+    border-radius:14px; padding:24px;
+    transition:all 0.25s; cursor:default;
+    position:relative; overflow:hidden;
+  }
+  .skill-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--orange), transparent);
+    opacity:0; transition:opacity 0.25s;
+  }
+  .skill-card:hover { border-color:rgba(232,101,10,0.35); transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.3); }
+  .skill-card:hover::before { opacity:1; }
+  .skill-icon {
+    width:44px; height:44px; border-radius:10px; margin-bottom:16px;
+    background:rgba(232,101,10,0.12); border:1px solid rgba(232,101,10,0.2);
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .skill-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700;
+    color:var(--white); margin-bottom:12px; }
+  .skill-items { display:flex; flex-direction:column; gap:6px; }
+  .skill-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); }
+  .skill-item::before { content:''; width:4px; height:4px; border-radius:50%;
+    background:var(--orange); flex-shrink:0; }
+
+  /* ── FRAMEWORKS ──────────────────────────────────────── */
+  #frameworks { padding:100px 0; background:rgba(255,255,255,0.015); }
+  .fw-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .fw-card {
+    background:rgba(255,255,255,0.03); border:1px solid var(--border);
+    border-radius:12px; padding:20px 18px;
+    text-align:center; transition:all 0.2s;
+  }
+  .fw-card:hover { border-color:rgba(232,101,10,0.4); background:rgba(232,101,10,0.05);
+    transform:scale(1.02); }
+  .fw-name { font-family:'Syne',sans-serif; font-size:15px; font-weight:700;
+    color:var(--white); margin-bottom:4px; }
+  .fw-full { font-size:11px; color:var(--muted); line-height:1.4; }
+  .fw-badge { display:inline-block; margin-top:10px; font-size:10px; font-weight:700;
+    padding:2px 8px; border-radius:4px; }
+
+  /* ── CERTIFICATIONS ──────────────────────────────────── */
+  #certifications { padding:100px 0; }
+  .certs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .cert-card {
+    background:rgba(255,255,255,0.025); border:1px solid var(--border);
+    border-radius:14px; padding:22px; position:relative;
+    transition:all 0.25s; overflow:hidden;
+  }
+  .cert-card::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--orange), #FF9B4A);
+    transform:scaleX(0); transition:transform 0.3s; transform-origin:left;
+  }
+  .cert-card:hover { border-color:rgba(232,101,10,0.3); transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+  .cert-card:hover::after { transform:scaleX(1); }
+  .cert-issuer { font-size:11px; font-weight:700; color:var(--orange);
+    letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  .cert-name { font-family:'Syne',sans-serif; font-size:14px; font-weight:700;
+    color:var(--white); margin-bottom:6px; line-height:1.3; }
+  .cert-sub { font-size:12px; color:var(--muted); margin-bottom:14px; line-height:1.4; }
+  .cert-status {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:11px; font-weight:700; padding:3px 9px; border-radius:4px;
+  }
+  .cert-active { background:rgba(34,197,94,0.1); color:#86EFAC; border:1px solid rgba(34,197,94,0.2); }
+  .cert-progress { background:rgba(251,191,36,0.1); color:#FDE68A; border:1px solid rgba(251,191,36,0.2); }
+  .cert-dot { width:5px; height:5px; border-radius:50%; }
+  .dot-green { background:#22C55E; }
+  .dot-yellow { background:#F59E0B; }
+
+  /* ── EDUCATION ───────────────────────────────────────── */
+  #education { padding:100px 0; background:rgba(255,255,255,0.015); }
+  .edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .edu-card {
+    background:rgba(255,255,255,0.025); border:1px solid var(--border);
+    border-radius:14px; padding:26px; transition:border-color 0.2s;
+  }
+  .edu-card:hover { border-color:rgba(232,101,10,0.35); }
+  .edu-degree { font-family:'Syne',sans-serif; font-size:16px; font-weight:700;
+    color:var(--white); margin-bottom:6px; line-height:1.3; }
+  .edu-school { font-size:13px; color:var(--gold); font-weight:600; margin-bottom:5px; }
+  .edu-period { font-size:12px; color:var(--muted); margin-bottom:12px; }
+  .edu-note { font-size:12.5px; color:rgba(248,250,252,0.6); line-height:1.6; }
+  .edu-pursuing {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; font-weight:700; padding:3px 10px; border-radius:4px;
+    background:rgba(251,191,36,0.08); color:#FDE68A;
+    border:1px solid rgba(251,191,36,0.2); margin-bottom:10px;
+  }
+
+  /* ── CONTACT ─────────────────────────────────────────── */
+  #contact { padding:100px 0 80px; }
+  .contact-wrapper {
+    background:linear-gradient(135deg, var(--navy3) 0%, var(--navy4) 100%);
+    border:1px solid var(--border); border-radius:24px; padding:56px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .contact-wrapper::before {
+    content:''; position:absolute; top:-50%; left:50%; transform:translateX(-50%);
+    width:400px; height:300px;
+    background:radial-gradient(ellipse, rgba(232,101,10,0.1), transparent 65%);
+    pointer-events:none;
+  }
+  .contact-head { font-family:'Syne',sans-serif; font-size:clamp(28px,4vw,44px);
+    font-weight:800; letter-spacing:-0.02em; margin-bottom:12px; }
+  .contact-sub { font-size:15px; color:var(--muted); margin-bottom:36px; }
+  .contact-links {
+    display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:40px;
+  }
+  .contact-link {
+    display:inline-flex; align-items:center; gap:9px;
+    padding:12px 22px; border-radius:9px; text-decoration:none;
+    font-size:13.5px; font-weight:600; transition:all 0.2s;
+    border:1.5px solid var(--border); color:var(--white);
+    background:rgba(255,255,255,0.04);
+  }
+  .contact-link:hover { border-color:var(--orange); color:var(--orange);
+    background:rgba(232,101,10,0.08); transform:translateY(-2px); }
+  .contact-link svg { width:16px; height:16px; flex-shrink:0; }
+  .contact-divider {
+    width:40px; height:1.5px; background:var(--orange); margin:28px auto;
+  }
+  .contact-avail {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--muted); font-weight:500;
+  }
+  .avail-dot {
+    width:8px; height:8px; border-radius:50%; background:#22C55E;
+    box-shadow:0 0 8px rgba(34,197,94,0.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow:0 0 8px rgba(34,197,94,0.6); }
+    50%      { box-shadow:0 0 16px rgba(34,197,94,0.9); }
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    border-top:1px solid var(--border); padding:24px 40px;
+    text-align:center; font-size:12px; color:var(--slate);
+    position:relative; z-index:1;
+  }
+
+  /* ── REVEAL ANIMATIONS ───────────────────────────────── */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-d1 { transition-delay:0.1s; }
+  .reveal-d2 { transition-delay:0.2s; }
+  .reveal-d3 { transition-delay:0.3s; }
+  .reveal-d4 { transition-delay:0.4s; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────── */
+  @media(max-width:900px) {
+    nav { padding:16px 24px; }
+    .nav-links { display:none; }
+    .container { padding:0 24px; }
+    .hero-inner, .about-grid, .edu-grid { grid-template-columns:1fr; gap:40px; }
+    .hero-card { display:none; }
+    .skills-grid, .certs-grid { grid-template-columns:1fr 1fr; }
+    .fw-grid { grid-template-columns:repeat(2,1fr); }
+    .stats-grid { flex-wrap:wrap; }
+    .stat-item { flex:1 1 45%; border-right:none; padding:12px 20px; }
+    .contact-wrapper { padding:36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">RS<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:rahulsuyal47@gmail.com" class="nav-cta">Let's Connect</a>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow reveal">GRC · AI Governance · Customer Success</div>
+        <h1 class="hero-name reveal reveal-d1">
+          Rahul<span class="highlight">Suyal</span>
+        </h1>
+        <p class="hero-title reveal reveal-d2">
+          <b>Customer Success & Solutions Engineer</b> with deep expertise in GRC platform delivery,
+          AI governance frameworks, compliance automation, and enterprise onboarding across
+          SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR & CRA.
+        </p>
+        <div class="hero-actions reveal reveal-d3">
+          <a href="mailto:rahulsuyal47@gmail.com" class="btn-primary">
+            ✉ Get In Touch
+          </a>
+          <a href="https://linkedin.com/in/rahulsuyal-5617851b6" target="_blank" class="btn-outline">
+            View LinkedIn
+          </a>
+        </div>
+        <div class="hero-social reveal reveal-d4">
+          <a href="mailto:rahulsuyal47@gmail.com" class="social-link" title="Email">✉</a>
+          <a href="https://linkedin.com/in/rahulsuyal-5617851b6" target="_blank" class="social-link" title="LinkedIn">in</a>
+          <a href="tel:+918279608225" class="social-link" title="Phone">📱</a>
+          <a href="#contact" class="social-link" title="Location">📍</a>
+        </div>
+      </div>
+
+      <!-- Hero Card -->
+      <div class="hero-card reveal reveal-d2">
+        <div class="card-avatar">RS</div>
+        <div class="card-name">Rahul Suyal</div>
+        <div class="card-role">GRC · AI Governance · CS/SE</div>
+        <div class="card-stats">
+          <div class="cstat"><div class="cstat-val">2.9</div><div class="cstat-lbl">Years in GRC</div></div>
+          <div class="cstat"><div class="cstat-val">50+</div><div class="cstat-lbl">Customers Enabled</div></div>
+          <div class="cstat"><div class="cstat-val">6+</div><div class="cstat-lbl">Frameworks</div></div>
+          <div class="cstat"><div class="cstat-val">4</div><div class="cstat-lbl">Certifications</div></div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-orange">ISO 42001 LA</span>
+          <span class="badge badge-blue">ISO 27001 LI</span>
+          <span class="badge badge-green">CC — ISC²</span>
+          <span class="badge badge-orange">CRA</span>
+          <span class="badge badge-blue">SOC 2</span>
+          <span class="badge badge-green">GDPR</span>
+          <span class="badge badge-orange">AI Governance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS STRIP ──────────────────────────────────────────── -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num">2.9</div>
+        <div class="stat-lbl">Years GRC Experience</div>
+      </div>
+      <div class="stat-item reveal reveal-d1">
+        <div class="stat-num">50+</div>
+        <div class="stat-lbl">Enterprise Customers</div>
+      </div>
+      <div class="stat-item reveal reveal-d2">
+        <div class="stat-num">6+</div>
+        <div class="stat-lbl">Compliance Frameworks</div>
+      </div>
+      <div class="stat-item reveal reveal-d3">
+        <div class="stat-num">4</div>
+        <div class="stat-lbl">Active Certifications</div>
+      </div>
+      <div class="stat-item reveal reveal-d4">
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">Audit Success Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-label reveal">About Me</div>
+        <h2 class="about-head reveal reveal-d1">
+          Bridging <em>compliance complexity</em> with platform clarity
+        </h2>
+        <div class="about-pillars reveal reveal-d2">
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div>
+              <div class="pillar-title">Customer Success</div>
+              <div class="pillar-desc">End-to-end onboarding, implementation, and certification delivery for enterprise GRC customers</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🛡️</div>
+            <div>
+              <div class="pillar-title">GRC & AI Governance</div>
+              <div class="pillar-desc">Deep expertise in SOC 2, ISO 27001:2022, ISO 42001, HIPAA, GDPR, CRA — certified practitioner</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">⚙️</div>
+            <div>
+              <div class="pillar-title">Solutions Engineering</div>
+              <div class="pillar-desc">Platform configuration, compliance workflow automation, pre-sales demos, and control mapping</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤖</div>
+            <div>
+              <div class="pillar-title">AI-Powered Delivery</div>
+              <div class="pillar-desc">Authored compliance playbooks and evidence templates; validated AI-generated controls at production scale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="about-body reveal">
+          I'm a GRC platform professional with nearly 3 years delivering enterprise compliance outcomes
+          for 50+ global SaaS companies. My work sits at the intersection of deep regulatory expertise,
+          platform-level product knowledge, and genuine customer empathy.
+        </p>
+        <p class="about-body reveal reveal-d1">
+          At Akitra, I've owned the full compliance journey — from initial scoping and platform onboarding
+          through control design, evidence management, audit coordination, and successful certification.
+          I've also contributed directly to the product: co-building the AI Control Generator, authoring
+          framework playbooks, and designing the GRC Training Management System.
+        </p>
+        <p class="about-body reveal reveal-d2">
+          I hold dual ISO 42001 credentials (Lead Auditor certified, Lead Implementer in progress),
+          making me one of a small group of practitioners qualified to both audit and implement
+          AI management systems end-to-end — a capability that is rapidly becoming essential as
+          companies navigate AI governance requirements globally.
+        </p>
+        <p class="about-body reveal reveal-d3">
+          I'm currently seeking <strong style="color:var(--gold)">Customer Success, Solutions Engineering, or Pre-Sales</strong>
+          roles at GRC, security, or compliance-tech platforms where product depth and customer
+          empathy create measurable compliance outcomes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ───────────────────────────────────────────── -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag reveal">Work History</div>
+      <h2 class="sec-title reveal reveal-d1">Professional <span>Experience</span></h2>
+      <p class="sec-sub reveal reveal-d2">Nearly 3 years at one of the leading GRC automation platforms</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Job 1 -->
+      <div class="tl-item reveal">
+        <div class="tl-dot-col">
+          <div class="tl-dot">🔬</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-period">Oct 2025 – Present · 5 months</div>
+          <div class="tl-role">Product Analyst & Trainer</div>
+          <div class="tl-company">AKITRA · Remote · GRC Platform (Andromeda)</div>
+          <p class="tl-desc">Driving product innovation and customer enablement for Akitra's flagship GRC platform with a focus on audit-readiness automation, AI-powered compliance tooling, and scalable content creation.</p>
+          <ul class="tl-bullets">
+            <li>Architected end-to-end product documentation, structured guides, and video walkthroughs across all Andromeda modules — <b>reducing support dependency and accelerating customer time-to-value</b></li>
+            <li>Designed and delivered polished pre-sales and post-onboarding demonstrations translating SOC 2, ISO 27001, ISO 42001, and multi-framework workflows into outcome-driven narratives</li>
+            <li>Actively designed and optimised the <b>GRC Training Management System module</b>, ensuring alignment with real-world audit expectations and evolving regulatory requirements</li>
+            <li>Co-developed an <b>AI-powered Control Generator</b> — produced framework-aligned controls across multiple standards and <b>validated AI outputs against audit standards</b> to ensure accuracy and defensibility</li>
+            <li><b>Authored comprehensive compliance playbooks</b> for SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, and CRA — covering control implementation, audit-readiness workflows, and step-by-step remediation guidance</li>
+            <li><b>Developed standardised evidence templates</b> across all major framework control domains — access management, risk management, incident response, vendor due diligence, and data privacy</li>
+            <li>Leveraged Claude, Claude Code, Lovable, Figma, and Emergent AI to rapidly prototype modules and accelerate product validation cycles</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">AI Control Gen</span>
+            <span class="tl-tag">Playbook Authoring</span>
+            <span class="tl-tag">Evidence Templates</span>
+            <span class="tl-tag">Product Demos</span>
+            <span class="tl-tag">Module Design</span>
+            <span class="tl-tag">AI Tooling</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="tl-item reveal reveal-d1">
+        <div class="tl-dot-col">
+          <div class="tl-dot">🤝</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-period">Jun 2023 – Oct 2025 · 2 years 5 months</div>
+          <div class="tl-role">Lead Customer Experience & Solutions Engineer</div>
+          <div class="tl-company">AKITRA · Remote</div>
+          <p class="tl-desc">Owned end-to-end compliance enablement for a global portfolio of SaaS enterprises, acting as the primary technical and strategic point-of-contact from onboarding through successful certification.</p>
+          <ul class="tl-bullets">
+            <li><b>Customer Onboarding & Implementation:</b> Led structured onboarding across SOC 2 Type I & II, ISO 27001:2022, HIPAA, GDPR, and CCPA — owning readiness assessments, control design validation, and platform configuration</li>
+            <li><b>Solutions Engineering:</b> Configured and optimised Controls, Policies, Risk Management, Evidence Management, Trust Center, ASQ, and EQMS modules into scalable, audit-ready governance workflows</li>
+            <li><b>Compliance Advisory:</b> Served as primary advisor to customer CISOs and auditors — designing control playbooks across access management, encryption, vendor risk, and incident response</li>
+            <li><b>Audit Project Delivery:</b> Actively led end-to-end audit projects — coordinating with auditors, managing evidence timelines, resolving control gaps in real time to ensure customers <b>successfully achieved their certifications and compliance reports</b> on schedule</li>
+            <li><b>Multi-Framework Harmonisation:</b> Structured compliance programs mapping overlapping frameworks into unified control environments, reducing duplication for customers managing concurrent certifications</li>
+            <li><b>Product Training & Enablement:</b> Designed training playbooks and delivered structured workshops to drive adoption maturity across internal CS and implementation teams</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">Customer Onboarding</span>
+            <span class="tl-tag">Audit Delivery</span>
+            <span class="tl-tag">Control Design</span>
+            <span class="tl-tag">Evidence Mgmt</span>
+            <span class="tl-tag">Multi-Framework</span>
+            <span class="tl-tag">Platform Config</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ───────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag reveal">Capabilities</div>
+      <h2 class="sec-title reveal reveal-d1">Core <span>Skills</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-title">Customer Success & CS</div>
+        <div class="skill-items">
+          <div class="skill-item">Enterprise onboarding & implementation</div>
+          <div class="skill-item">Pre-sales & post-sales demos</div>
+          <div class="skill-item">Stakeholder communication (C-suite to auditors)</div>
+          <div class="skill-item">Audit readiness advisory</div>
+          <div class="skill-item">Evidence management lifecycle</div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-title">GRC Platform Expertise</div>
+        <div class="skill-items">
+          <div class="skill-item">Controls · Policies · Risk Management</div>
+          <div class="skill-item">Trust Center · ASQ · EQMS</div>
+          <div class="skill-item">Multi-framework control mapping</div>
+          <div class="skill-item">Compliance automation workflows</div>
+          <div class="skill-item">Internal audit & gap assessment</div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d2">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-title">AI & Product Tools</div>
+        <div class="skill-items">
+          <div class="skill-item">Claude · Claude Code</div>
+          <div class="skill-item">Lovable · Figma · Emergent AI</div>
+          <div class="skill-item">AI control generation & validation</div>
+          <div class="skill-item">Playbook & template authoring</div>
+          <div class="skill-item">Product documentation & enablement</div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-icon">📋</div>
+        <div class="skill-title">Compliance Content</div>
+        <div class="skill-items">
+          <div class="skill-item">Framework compliance playbooks</div>
+          <div class="skill-item">Standardised evidence templates</div>
+          <div class="skill-item">Control implementation guides</div>
+          <div class="skill-item">Audit documentation structuring</div>
+          <div class="skill-item">Remediation roadmaps</div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d2">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-title">Languages</div>
+        <div class="skill-items">
+          <div class="skill-item">Hindi — Native</div>
+          <div class="skill-item">English — Professional</div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d3">
+        <div class="skill-icon">🎓</div>
+        <div class="skill-title">Education</div>
+        <div class="skill-items">
+          <div class="skill-item">B.Tech — Electrical, Electronics & Comm. Engg.</div>
+          <div class="skill-item">Birla Institute of Applied Sciences · 2019–2023</div>
+          <div class="skill-item">MBA (OL/Distance) · 2025–2027 (Pursuing)</div>
+          <div class="skill-item">Specialisation: Privacy & Regulation in AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FRAMEWORKS ───────────────────────────────────────────── -->
+<section id="frameworks">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag reveal">Regulatory Expertise</div>
+      <h2 class="sec-title reveal reveal-d1">Compliance <span>Frameworks</span></h2>
+      <p class="sec-sub reveal reveal-d2">Hands-on implementation and audit delivery across all major standards</p>
+    </div>
+    <div class="fw-grid">
+      <div class="fw-card reveal">
+        <div class="fw-name">SOC 2</div>
+        <div class="fw-full">Type I & Type II — Service Organization Controls</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">Delivered</span>
+      </div>
+      <div class="fw-card reveal reveal-d1">
+        <div class="fw-name">ISO 27001</div>
+        <div class="fw-full">:2022 — Information Security Management Systems</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">LI Certified · IA Certified</span>
+      </div>
+      <div class="fw-card reveal reveal-d2">
+        <div class="fw-name">ISO 42001</div>
+        <div class="fw-full">:2023 — AI Management Systems</div>
+        <span class="fw-badge" style="background:rgba(232,101,10,.1);color:var(--gold);border:1px solid rgba(232,101,10,.2);">LA Certified · LI Pursuing</span>
+      </div>
+      <div class="fw-card reveal reveal-d3">
+        <div class="fw-name">HIPAA</div>
+        <div class="fw-full">Health Insurance Portability & Accountability Act</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">Delivered</span>
+      </div>
+      <div class="fw-card reveal">
+        <div class="fw-name">GDPR</div>
+        <div class="fw-full">EU General Data Protection Regulation</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">Delivered</span>
+      </div>
+      <div class="fw-card reveal reveal-d1">
+        <div class="fw-name">CCPA</div>
+        <div class="fw-full">California Consumer Privacy Act</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">Delivered</span>
+      </div>
+      <div class="fw-card reveal reveal-d2">
+        <div class="fw-name">CRA</div>
+        <div class="fw-full">EU Cyber Resilience Act — Linux Foundation Certified</div>
+        <span class="fw-badge" style="background:rgba(34,197,94,.1);color:#86EFAC;border:1px solid rgba(34,197,94,.2);">Certified</span>
+      </div>
+      <div class="fw-card reveal reveal-d3">
+        <div class="fw-name">ISO 42001 AI</div>
+        <div class="fw-full">AI Governance · Privacy & Regulation in AI (MBA)</div>
+        <span class="fw-badge" style="background:rgba(251,191,36,.08);color:#FDE68A;border:1px solid rgba(251,191,36,.2);">Pursuing MBA Spec.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ───────────────────────────────────────── -->
+<section id="certifications">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag reveal">Credentials</div>
+      <h2 class="sec-title reveal reveal-d1">Certifications &amp; <span>Credentials</span></h2>
+    </div>
+    <div class="certs-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">Mastermind</div>
+        <div class="cert-name">ISO/IEC 42001:2023 Lead Auditor</div>
+        <div class="cert-sub">AI Management Systems · Qualified to audit AI governance frameworks</div>
+        <span class="cert-status cert-active"><span class="cert-dot dot-green"></span>Certified</span>
+      </div>
+
+      <div class="cert-card reveal reveal-d1">
+        <div class="cert-issuer">Udemy</div>
+        <div class="cert-name">ISO/IEC 27001:2022 Lead Implementer</div>
+        <div class="cert-sub">Information Security Management Systems implementation</div>
+        <span class="cert-status cert-active"><span class="cert-dot dot-green"></span>Certified</span>
+      </div>
+
+      <div class="cert-card reveal reveal-d2">
+        <div class="cert-issuer">Advisera</div>
+        <div class="cert-name">ISO/IEC 27001:2022 Internal Auditor</div>
+        <div class="cert-sub">Information Security Management audit qualification</div>
+        <span class="cert-status cert-active"><span class="cert-dot dot-green"></span>Certified</span>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-issuer">ISC²</div>
+        <div class="cert-name">CC — Certified in Cybersecurity</div>
+        <div class="cert-sub">Foundational cybersecurity certification from the global security body</div>
+        <span class="cert-status cert-active"><span class="cert-dot dot-green"></span>Certified</span>
+      </div>
+
+      <div class="cert-card reveal reveal-d1">
+        <div class="cert-issuer">Linux Foundation · LFEL1001</div>
+        <div class="cert-name">EU Cyber Resilience Act (CRA)</div>
+        <div class="cert-sub">EU CRA compliance and product cybersecurity requirements</div>
+        <span class="cert-status cert-active"><span class="cert-dot dot-green"></span>Certified</span>
+      </div>
+
+      <div class="cert-card reveal reveal-d2" style="border-color:rgba(251,191,36,0.2);">
+        <div class="cert-issuer" style="color:#F59E0B;">Exemplar Global · In Progress</div>
+        <div class="cert-name">ISO/IEC 42001 Lead Implementer</div>
+        <div class="cert-sub">Completing to achieve dual AI governance credential — both Lead Auditor and Lead Implementer for end-to-end AI management system advisory</div>
+        <span class="cert-status cert-progress"><span class="cert-dot dot-yellow"></span>Currently Pursuing</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ────────────────────────────────────────────── -->
+<section id="education">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag reveal">Academic Background</div>
+      <h2 class="sec-title reveal reveal-d1"><span>Education</span></h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">B.Tech — Electrical, Electronics & Communication Engineering</div>
+        <div class="edu-school">Birla Institute of Applied Sciences</div>
+        <div class="edu-period">Aug 2019 – Jun 2023</div>
+        <div class="edu-note">Foundation in engineering principles, systems thinking, and technical problem-solving that underpins a career in GRC platform delivery.</div>
+      </div>
+      <div class="edu-card reveal reveal-d1" style="border-color:rgba(251,191,36,0.2);">
+        <div class="edu-pursuing">▶ Currently Pursuing</div>
+        <div class="edu-degree">MBA — Online / Distance</div>
+        <div class="edu-school">Specialisation: Privacy & Regulation in AI</div>
+        <div class="edu-period">2025 – 2027 (In Progress)</div>
+        <div class="edu-note">Advancing strategic understanding of AI governance, data privacy law, and regulatory frameworks — directly complementing hands-on ISO 42001 Lead Auditor and GRC platform expertise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ──────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="sec-tag reveal" style="margin-bottom:16px;">Open to Opportunities</div>
+      <h2 class="contact-head reveal reveal-d1">Let's work <span style="color:var(--orange)">together</span></h2>
+      <p class="contact-sub reveal reveal-d2">
+        Seeking Customer Success, Solutions Engineering, or Pre-Sales roles at GRC,
+        security, or compliance-tech platforms. Based in Nainital, India — open to remote.
+      </p>
+      <div class="contact-links reveal reveal-d2">
+        <a href="mailto:rahulsuyal47@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          rahulsuyal47@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/rahulsuyal-5617851b6" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/rahulsuyal-5617851b6
+        </a>
+        <a href="tel:+918279608225" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 82796 08225
+        </a>
+        <a href="#" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Nainital, Uttarakhand, India
+        </a>
+      </div>
+      <div class="contact-divider reveal"></div>
+      <div class="contact-avail reveal reveal-d3">
+        <div class="avail-dot"></div>
+        Currently available for new opportunities
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────── -->
+<footer>
+  <p>© 2026 Rahul Suyal · GRC & AI Governance Professional · Built with care</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(10,22,40,0.97)'
+      : 'rgba(10,22,40,0.85)';
+  });
+
+  // Animate stat numbers on scroll
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        const nums = e.target.querySelectorAll('.stat-num');
+        nums.forEach(el => {
+          const raw = el.textContent.replace(/[^0-9.]/g,'');
+          const suffix = el.textContent.replace(raw,'');
+          if(!raw) return;
+          const target = parseFloat(raw);
+          let current = 0; const steps = 40;
+          const timer = setInterval(() => {
+            current += target / steps;
+            if(current >= target) { current = target; clearInterval(timer); }
+            el.textContent = (Number.isInteger(target) ? Math.floor(current) : current.toFixed(1)) + suffix;
+          }, 30);
+        });
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.5 });
+  const statsSection = document.getElementById('stats');
+  if(statsSection) statsObserver.observe(statsSection);
+</script>
+</body>
+</html>
